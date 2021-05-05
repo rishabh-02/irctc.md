@@ -46,18 +46,18 @@ If I want to exit in telent   Ctrl + ]   or telnet> close <br>
 
 (1) yum install dovecot* -y 
  
-(2) vi /etc/dovecot/conf.d/10-mail.conf 
+(2) vi /etc/dovecot/conf.d/10-mail.conf <br> 
 mail_location = maildir:~/Maildir # Line 24 - uncomment
  
-(3) [root@fosnix ~]# vi /etc/dovecot/dovecot.conf
+(3) [root@fosnix ~]# vi /etc/dovecot/dovecot.conf <br>
 protocols = imap pop3 lmtp # Line 24 - umcomment
  
  
-(4) [root@fosnix ~]# vi /etc/dovecot/conf.d/10-auth.conf
+(4) [root@fosnix ~]# vi /etc/dovecot/conf.d/10-auth.conf <br>
 disable_plaintext_auth = yes #line 10 - uncomment
 auth_mechanisms = plain login #Line 100 - Add the word: "login"
  
-(5) [root@fosnix ~]# vi /etc/dovecot/conf.d/10-master.conf
+(5) [root@fosnix ~]# vi /etc/dovecot/conf.d/10-master.conf <br>
 #Line 91, 92 - Uncomment and add "postfix"
 #mode = 0600
 user = postfix
@@ -65,15 +65,15 @@ group = postfix
  
  
  
-(3) systemctl restart dovecot 
-(4) systemctl enable dovecot 
-(5) firewall-cmd --permanent --add-port=110/tcp
-(6) firewall-cmd --permanent --add-port=143/tcp
-(7) firewall-cmd --reload 
+(3) systemctl restart dovecot <br>
+(4) systemctl enable dovecot <br>
+(5) firewall-cmd --permanent --add-port=110/tcp <br>
+(6) firewall-cmd --permanent --add-port=143/tcp <br>
+(7) firewall-cmd --reload <br>
 
-Please find the below link for Install and configuration of squirrelmail on centos 7.
+Please find the below link for Install and configuration of squirrelmail on centos 7. <br>
  
-https://www.fosnix.com/install-and-configure-postfix-dovecot-squirrelmail-on-centos-7/?i=1
+https://www.fosnix.com/install-and-configure-postfix-dovecot-squirrelmail-on-centos-7/?i=1 <br>
 
 Testing Dovecot 
 
