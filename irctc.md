@@ -1,4 +1,4 @@
-<h4><b><samp>How to Install and Configure Postfix ?</samp></b></h4>
+<h3><b><samp> (1) - How to Install and Configure Postfix ?</samp></b></h3>
 
 (1) yum install epel-release -y<br>
 vi /etc/hosts                                    192.168.122.183 test.example.com<br>
@@ -41,7 +41,7 @@ If I want to exit in telent   Ctrl + ]   or telnet> close <br>
 
 
 
-<h4><b><samp>How to install and configure Dovecot ?</samp></b></h4>
+<h3><b><samp> (2) - How to install and configure Dovecot ?</samp></b></h3>
 
 
 (1) yum install dovecot* -y 
@@ -94,88 +94,86 @@ quit                    # Type 'quit' to exit
 
 
 
-<h4><b><samp>How to install and configure Squirrelmail ?</samp></b></h4>
+<h3><b><samp> (3) - How to install and configure Squirrelmail ?</samp></b></h3>
 
-Install Squirrelmail
+Install Squirrelmail <br>
 yum -y install squirrelmail
 
 
-# cd /usr/share/squirrelmail/config/
+ cd /usr/share/squirrelmail/config/
 
-# ./conf.pl
+./conf.pl
 
 Press 1 and Then I can change 
 1. Organization Name :
 2. Organization logo :
-8. Provider name : 
+8. Provider name : <br>
 Press Save S and R return to home and Press 2 Change 
 
 1. Domain :
 3. Sendmail or SMTP :
 
-Press to SMTP 2
+Press to SMTP 2 <br>
 
-vi /etc/httpd/conf/httpd.conf
+vi /etc/httpd/conf/httpd.conf <br> 
 
-Alias /webmail /usr/share/squirrelmail
-<Directory /usr/share/squirrelmail>
-Options Indexes FollowSymLinks
-RewriteEngine On
-AllowOverride All
-DirectoryIndex index.php
-Order allow,deny
-Allow from all
-</Directory>
+Alias /webmail /usr/share/squirrelmail <br>
+<Directory /usr/share/squirrelmail> <br>
+Options Indexes FollowSymLinks  <br>
+RewriteEngine On  <br>
+AllowOverride All <br>
+DirectoryIndex index.php <br>
+Order allow,deny  <br>
+Allow from all  <br>
+</Directory>  <br>
 
-(8) systemctl restart httpd
-(9) Now I'll see and Use the SquirrelMail with GUI 
+(8) systemctl restart httpd  <br>
+(9) Now I'll see and Use the SquirrelMail with GUI <br>
 
-http://192.168.122.60/webmail/src/redirect.php
-
-
+http://192.168.122.60/webmail/src/redirect.php <br>
 
 
-<h4><b><samp>How to install and Configure change password plugin for squirrelmail using poppassd ? ?</samp></b></h4>
 
-(1) - Download change password plugin from https://squirrelmail.org/plugin_view.php?id=21 ( https://squirrelmail.org/countdl.php?fileurl=http%3A%2F%2Fwww.squirrelmail.org%2Fplugins%2Fchange_pass-3.1-1.4.0.tar.gz )
-(2) - Download compability plugin from https://squirrelmail.org/plugin_view.php?id=152 ( https://squirrelmail.org/countdl.php?fileurl=http%3A%2F%2Fwww.squirrelmail.org%2Fplugins%2Fcompatibility-2.0.16-1.0.tar.gz )
-(3) - mv countdl.php\?fileurl\=http\:%2F%2Fwww.squirrelmail.org%2Fplugins%2Fchange_pass-3.1-1.4.0.tar.gz  plugin_change_pass-3.1-1.4.0.tar.gz
-(4) - tar -xvf plugin_change_pass-3.1-1.4.0.tar.gz
-(5) - mv countdl.php\?fileurl\=http\:%2F%2Fwww.squirrelmail.org%2Fplugins%2Fcompatibility-2.0.16-1.0.tar.gz plugin_compatibility-2.0.16-1.0.tar.gz
-(6) - tar -xvf plugin_compatibility-2.0.16-1.0.tar.gz
-(7) - mv change_pass /usr/share/squirrelmail/plugins/
-(8) - mv compatibility compability_plugin
-(9) - Download poppassd.c from https://netwinsite.com/poppassd/
-      Look at poppassd.c and make sure it looks safe
-(10) - yum -y install gcc
-(11) - gcc poppassd.c -o poppassd -lcrypt
-(12) - mv poppassd /usr/local/bin/
-(13) - yum -y install xinetd
-(14) - cp /etc/xinetd.d/time-stream /etc/xinetd.d/poppassd
-(15) - vim /etc/xinetd.d/poppassd
-       Update "service time" to "service poppassd"
-       disable = no
-       id = poppasswd
-       type = UNLISTED
-       user = root
-       group = root
-       server = /usr/local/bin/poppassd
-       port = 106
+
+<h3><b><samp> (4) - How to install and Configure change password plugin for squirrelmail using poppassd ? ?</samp></b></h3>
+
+(1) - Download change password plugin from https://squirrelmail.org/plugin_view.php?id=21 ( https://squirrelmail.org/countdl.php?fileurl=http%3A%2F%2Fwww.squirrelmail.org%2Fplugins%2Fchange_pass-3.1-1.4.0.tar.gz ) <br>
+(2) - Download compability plugin from https://squirrelmail.org/plugin_view.php?id=152 ( https://squirrelmail.org/countdl.php?fileurl=http%3A%2F%2Fwww.squirrelmail.org%2Fplugins%2Fcompatibility-2.0.16-1.0.tar.gz ) <br>
+(3) - mv countdl.php\?fileurl\=http\:%2F%2Fwww.squirrelmail.org%2Fplugins%2Fchange_pass-3.1-1.4.0.tar.gz  plugin_change_pass-3.1-1.4.0.tar.gz <br>
+(4) - tar -xvf plugin_change_pass-3.1-1.4.0.tar.gz <br>
+(5) - mv countdl.php\?fileurl\=http\:%2F%2Fwww.squirrelmail.org%2Fplugins%2Fcompatibility-2.0.16-1.0.tar.gz plugin_compatibility-2.0.16-1.0.tar.gz <br>
+(6) - tar -xvf plugin_compatibility-2.0.16-1.0.tar.gz <br>
+(7) - mv change_pass /usr/share/squirrelmail/plugins/ <br>
+(8) - mv compatibility compability_plugin <br>
+(9) - Download poppassd.c from https://netwinsite.com/poppassd/ <br> 
+      Look at poppassd.c and make sure it looks safe <br>
+(10) - yum -y install gcc <br>
+(11) - gcc poppassd.c -o poppassd -lcrypt <br>
+(12) - mv poppassd /usr/local/bin/ <br>
+(13) - yum -y install xinetd <br>
+(14) - cp /etc/xinetd.d/time-stream /etc/xinetd.d/poppassd <br>
+(15) - vim /etc/xinetd.d/poppassd <br>
+       Update "service time" to "service poppassd" <br>
+       disable = no <br>
+       id = poppasswd <br> 
+       type = UNLISTED <br> 
+       user = root <br>
+       group = root <br>
+       server = /usr/local/bin/poppassd <br>
+       port = 106 <br>
 	
-
-
-16. systemctl restart xinetd
-17. systemctl enable xinetd
-18. Test by doing "telnet localhost 106" that service is started properly or not
-19. cd /usr/share/squirrelmail/config
-    ./conf.pl
-    Plugins
-    compatilibility
-    change_pass
-    S
-    Q
-19. cd /usr/share/squirrelmail/plugins
-20. vim change_pass/functions.php
+16. systemctl restart xinetd <br>
+17. systemctl enable xinetd <br>
+18. Test by doing "telnet localhost 106" that service is started properly or not <br>
+19. cd /usr/share/squirrelmail/config <br>
+    ./conf.pl <br>
+    Plugins <br>
+    compatilibility <br>
+    change_pass <br> 
+    S <br>
+    Q <br>
+19. cd /usr/share/squirrelmail/plugins <br>
+20. vim change_pass/functions.php <br>
  
 Near line 54 comment "//if(!preg_match('/^2\d\d/', $result)) {" and insert another line "if(!preg_match('/Cha/', $result)) {"
 without this change is not detected as due to some bug poppassd is not sending proper 200 response on CentOS 7.0
