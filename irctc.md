@@ -65,11 +65,11 @@ group = postfix
  
  
  
-(3) systemctl restart dovecot <br>
-(4) systemctl enable dovecot <br>
-(5) firewall-cmd --permanent --add-port=110/tcp <br>
-(6) firewall-cmd --permanent --add-port=143/tcp <br>
-(7) firewall-cmd --reload <br>
+(6) systemctl restart dovecot <br>
+(7) systemctl enable dovecot <br>
+(8) firewall-cmd --permanent --add-port=110/tcp <br>
+(9) firewall-cmd --permanent --add-port=143/tcp <br>
+(10) firewall-cmd --reload <br>
 
 Please find the below link for Install and configuration of squirrelmail on centos 7. <br>
  
@@ -180,5 +180,105 @@ without this change is not detected as due to some bug poppassd is not sending p
  
 
 https://www.sbarjatiya.com/notes_wiki/index.php/CentOS_7.x_Configure_change_password_plugin_for_squirrelmail_using_poppassd
+
+
+<h3><b><samp> (5) - How to set Aliases ?</samp></b></h3>
+
+
+(1) vim /etc/aliases <br>
+
+(2) define in last line <br>
+
+Person who should get root's mail <br>
+root:          marc <br>
+allemp          rishabh,aman,pravesh <br>
+
+(3) postalias hash:/etc/aliases 
+
+After defining the allemp name variable in the alias, we will only send the mail by selecting allemp, then all the user or mail id we define there 
+will go to the mail.
+
+
+
+<h3><b><samp> (6) - How to increase mail size to Send Big Mail ?</samp></b></h3>
+
+(1) - vim /etc/php.ini <br>
+post_max_size = 20M <br>
+upload_max_filesize = 20M <br>
+max_file_uploads = 20M <br>
+
+(2) systemctl restart httpd <br>
+(3) vim /etc/postfix/main.cf <br>
+mailbox_size_limit = 50240000 <br>
+message_size_limit = 20480000 <br>
+(4) systemctl restart postfix <br>
+
+
+
+<h3><b><samp> (7) - How to increase mail size to Send Big Mail ?</samp></b></h3>
+
+ 
+(1) cd /usr/share/squirrelmail/images/ <br>
+(2) paste the railway png image and go to config file <br>
+(3) - cd /usr/share/squirrelmail/config <br>
+(4) ./conf.pl <br>
+press 1 Organization Preferences <br>
+And the press 2 Organization Logo <br>
+
+
+
+<h3><b><samp> (8) - How to set Forwarding ?</samp></b></h3>
+
+Ans - through forwarding, we will send mail to one user and that mail will also be sent to another user. If I put forwarding. <br>
+
+(1) firstly i create go to /home/aman(user)/.forward <br>
+(2) chown aman:aman /home/aman/.forward <br>
+(3) then i can define some mail in .forward <br>
+
+
+
+
+<h3><b><samp> (9) - How To Configure Postfix Relay in Centos 7 ?</samp></b></h3>
+
+(1) - yum -y install Postfix mailx cyrus-sasl-plain <br>
+(2) - systemctl start postfix <br>
+(3) - systemctl restart postfix <br>
+(4) - systemctl enable postfix <br>
+(5) - vim /etc/postfix/main.cf <br>
+ 
+relayhost = [smtp.gmail.com]:587 <br>
+smtp_use_tls = yes <br>
+smtp_sasl_auth_enable = yes <br>
+smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd <br>
+smtp_tls_CAfile = /etc/ssl/certs/ca-bundle.crt <br>
+smtp_sasl_security_options = noanonymous <br>
+smtp_sasl_tls_security_options = noanonymous <br>
+
+(6) vim /etc/postfix/sasl_passwd <br>
+[smtp.gmail.com]:587 username:password
+(7) postmap /etc/postfix/sasl_passwd <br>
+(8) chown root:postfix /etc/postfix/sasl_passwd* <br>
+(9) chown 640 /etc/postfix/sasl_passwd* <br>
+(10) systemctl reload postfix <br>
+(11)  vim /etc/postfix/tls_policy <br>
+[smtp.gmail.com]:587 encrypt
+(7) echo ” this is a test mail.” | mail -s “test message” user@gmail.com <br>
+
+
+
+
+<h3><b><samp> (10) -  How to Add Address Book in SquirrelMail ?</samp></b></h3>
+
+(1) cd /usr/share/squirrelmail/ <br>
+ mkdir data <br>
+cd data/ <br>
+(2) vim global_abook <br>
+aman|aman||aman@test.example.com|Internet Ticketing <br>
+(3) Systemctl restart httpd <br>
+(4) cd /usr/share/squirrelmail/config <br>
+(5) ./conf.pl <br>
+(6) and then press 8 (Plugins) and set abook_import_export
+(7) Save and Exit
+
 
 
