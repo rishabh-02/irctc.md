@@ -215,7 +215,7 @@ message_size_limit = 20480000 <br>
 
 
 
-<h3><b><samp> (7) - How to Add Address Book in SquirrelMail ?</samp></b></h3>
+<h3><b><samp> (7) - How to Add IRCTC logo ?</samp></b></h3>
 
  
 (1) cd /usr/share/squirrelmail/images/ <br>
