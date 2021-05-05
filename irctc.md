@@ -215,7 +215,7 @@ message_size_limit = 20480000 <br>
 
 
 
-<h3><b><samp> (7) - How to increase mail size to Send Big Mail ?</samp></b></h3>
+<h3><b><samp> (7) - How to Add Address Book in SquirrelMail ?</samp></b></h3>
 
  
 (1) cd /usr/share/squirrelmail/images/ <br>
@@ -277,7 +277,7 @@ aman|aman||aman@test.example.com|Internet Ticketing <br>
 (3) Systemctl restart httpd <br>
 (4) cd /usr/share/squirrelmail/config <br>
 (5) ./conf.pl <br>
-(6) and then press 8 (Plugins) and set abook_import_export
+(6) and then press 8 (Plugins) and set abook_import_export <br>
 (7) Save and Exit
 
 
